@@ -1,5 +1,7 @@
-package com.quickers.webchatbackend.common;
+package com.quickers.webchatbackend.entities;
 
+import com.quickers.webchatbackend.common.*;
+import com.quickers.webchatbackend.entities.Chat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +14,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "messages")
+@NamedQuery(name = MessageConstants.FIND_MESSAGES_BY_CHAT_ID,
+        query = "SELECT m FROM Message m WHERE m.chat.id = :chatId ORDER BY m.createdDate")
+@NamedQuery(name = MessageConstants.SET_MESSAGES_TO_SEEN_BY_CHAT,
+        query = "UPDATE Message SET state = :newState WHERE chat.id = :chatId")
 public class Message extends BaseAuditingEntity {
 
     @Id

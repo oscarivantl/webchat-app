@@ -1,5 +1,6 @@
-package com.quickers.webchatbackend.common;
+package com.quickers.webchatbackend.entities;
 
+import com.quickers.webchatbackend.common.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "chats")
+@Table(name = "chat")
+@NamedQuery(name = ChatConstants.FIND_CHAT_BY_SENDER_ID,
+        query = "SELECT DISTINCT c FROM Chat c WHERE c.sender.id = :senderId OR c.recipient.id = :senderId ORDER BY c.createdDate DESC")
+@NamedQuery(name = ChatConstants.FIND_CHAT_BY_SENDER_ID_AND_RECEIVER,
+        query = "SELECT DISTINCT c FROM Chat c WHERE (c.sender.id = :senderId AND c.recipient.id = :recipientId) OR (c.sender.id = :recipientId AND c.recipient.id = :sender)")
 public class Chat  extends BaseAuditingEntity {
 
     @Id
