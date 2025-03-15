@@ -1,5 +1,6 @@
 package com.quickers.webchatbackend.mappers;
 
+import com.quickers.webchatbackend.dto.UserResponse;
 import com.quickers.webchatbackend.entities.User;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,16 @@ public class UserMapper {
 
         user.setLastSeen(LocalDateTime.now());
         return user;
+    }
+
+    public UserResponse toUserResponse(User user) {
+        return UserResponse.builder()
+                .id(user.getId())
+                .fistName(user.getFistName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .lastSeen(user.getLastSeen())
+                .isOnline(user.isUserOnline())
+                .build();
     }
 }
