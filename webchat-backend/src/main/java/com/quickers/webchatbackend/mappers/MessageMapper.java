@@ -2,6 +2,7 @@ package com.quickers.webchatbackend.mappers;
 
 import com.quickers.webchatbackend.dto.MessageResponse;
 import com.quickers.webchatbackend.entities.Message;
+import com.quickers.webchatbackend.utils.FileUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +16,7 @@ public class MessageMapper {
                 .type(message.getMessageType())
                 .state(message.getState())
                 .createdAt(message.getCreatedDate())
-                // TODO read media file
+                .media(FileUtils.readFileFromLocation(message.getMediaFilePath()))
                 .build();
     }
 }

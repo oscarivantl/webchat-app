@@ -24,7 +24,7 @@ spring:
     multipart:
       max-file-size: 50MB
 
-  application:
+application:
     file:
       uploads:
-        media-output.path: ./uploads
+        media-output-path: ./uploads
