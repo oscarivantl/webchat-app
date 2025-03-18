@@ -2,6 +2,7 @@ package com.quickers.webchatbackend.controllers;
 
 import com.quickers.webchatbackend.dto.UserResponse;
 import com.quickers.webchatbackend.services.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
+@Tag(name = "User")
 public class UserController {
 
     private final UserService userService;
